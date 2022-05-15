@@ -28,6 +28,8 @@ async function run() {
 
   if(matched == true) {
     console.log(matchesPerAd);
+    var adData = {"adData":matchesPerAd};
+    return adData;
   }
 
   matched = false;
