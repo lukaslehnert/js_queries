@@ -9,33 +9,30 @@ async function run() {
   let myArray = {};
 
   // ADS
-  for (const adsDoc of adsQuery.docs) {
+  for (const adsDoc of adsQuery.docs) {                 // for all ads
 
     const ads = adsDoc.data();
   
-    var matchesPerAd = _.filter(matchesQuery.docs,
+    var matchesPerAd = _.filter(matchesQuery.docs,      
       function(matchDoc){
         const match = matchDoc.data();
-        if(match.adReference == ads.id) {
+        if(match.adReference == ads.id) {               // if id = id
           console.log("Matched");
           matched = true;
-          return ads.id;
+          return ads.id;                                 
         } 
       }
     );
-    
-  console.log(matched);
 
-  if(matched == true) {
-    console.log(matchesPerAd);
-    var adData = {"adData":matchesPerAd};
-    return adData;
+    console.log(matched);                              // matched true OR matched false
+
+    if(matched == true) {                              // if true
+        console.log(matchesPerAd);
+        myArray[matchesPerAd]=matchesPerAd;            // list all objects that matched within the ad
+    } 
+    matched = false;                                   // set matched false
   }
 
-  matched = false;
-  myArray = {matchesPerAd};
-
-  //var adData = {"adData":myArray, "matchesPerAd":matchesPerAd}
-  //return adData;
-  }
+  var adData = {"adData":myArray};                     
+  return adData;
 }
