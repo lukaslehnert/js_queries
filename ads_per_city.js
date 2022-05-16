@@ -1,3 +1,6 @@
+
+///////// Ads pro Stadt /////////////////////////
+
 async function run() {
   const adsPromise = db.collection("newAds").get();
   const matchPromise = db.collection("newMatches").get();
@@ -14,10 +17,10 @@ async function run() {
   let totalNumber = 0;
   let countRelevantTotal = 0;
 
+  let testing = 0;
+
   let otherCity;
   let wienCity;
-
-///////// Wohnungen pro Stadt /////////////////////////
 
 const matchesPerCityList = {};
 
@@ -64,13 +67,15 @@ const matchesPerCityList = {};
             if(ads.city == "Wien"){                   // if else statement = working
               console.log("value in Wien");
               wienCity = ads.city;
-              matchesPerCityList[wienCity]++;         /*TODO*/ // UNEXPECTED BEHAVIOUR
+              //matchesPerCityList[wienCity]++;         /*TODO*/ // UNEXPECTED BEHAVIOUR
+              matchesPerCityList[wienCity] = testing++;
               return true;
             }
             else {                                    // works fine
               console.log("value in Other");
               otherCity = ads.city;
-              matchesPerCityList[otherCity]++;        /*TODO*/ // UNEXPECTED BEHAVIOUR
+              //matchesPerCityList[otherCity]++;        /*TODO*/ // UNEXPECTED BEHAVIOUR
+              matchesPerCityList[otherCity] = testing++;
               return false;
             }
           }
